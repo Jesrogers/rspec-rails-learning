@@ -4,16 +4,8 @@ RSpec.describe Note, type: :model do
   describe "search messages for a term" do
     context "when a match is found" do
       it "returns notes that match the search term" do
-        user = User.create(
-          first_name: "Joe",
-          last_name:  "Tester",
-          email:      "joetester@example.com",
-          password:   "dottle-nouveau-pavilion-tights-furze",
-        )
-    
-        project = user.projects.create(
-          name: "Test Project",
-        )
+        user = FactoryBot.create(:user, :with_project)
+        project = user.projects.first
     
         note1 = project.notes.create(
           message: "This is the first note.",
@@ -33,16 +25,8 @@ RSpec.describe Note, type: :model do
     end
     context "when no match is found" do
       it "returns an empty collection" do
-        user = User.create(
-          first_name: "Joe",
-          last_name:  "Tester",
-          email:      "joetester@example.com",
-          password:   "dottle-nouveau-pavilion-tights-furze",
-        )
-    
-        project = user.projects.create(
-          name: "Test Project",
-        )
+        user = FactoryBot.create(:user, :with_project)
+        project = user.projects.first
     
         note1 = project.notes.create(
           message: "This is the first note.",
