@@ -246,7 +246,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   byebug
-  capybara (~> 2.15.4)
+  capybara
   coffee-rails (~> 4.2)
   devise
   factory_bot_rails (~> 4.10.0)

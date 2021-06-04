@@ -8,6 +8,7 @@ module LoginSupport
     end
 end
 
-RSpec.configure do |config|
-    config.include LoginSupport
-end
+# This will automatically include this module in all(?) rspec tests
+# RSpec.configure do |config|
+#     config.include LoginSupport
+# end
