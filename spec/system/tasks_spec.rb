@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.feature "Tasks", type: :feature do
+RSpec.describe "Tasks", type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:project) { FactoryBot.create(:project, name: "RSpec tutorial", owner: user) }
-  let(:task) { project.tasks.create!(name: "Finish RSpec tutorial") }
+  let!(:task) { project.tasks.create!(name: "Finish RSpec tutorial") }
 
   scenario "user toggles a task", js: true do
     sign_in user
