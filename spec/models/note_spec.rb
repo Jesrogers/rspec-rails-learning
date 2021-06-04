@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Note, type: :model do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, first_name: "Jesse", last_name: "Rogers") }
   let(:project) { FactoryBot.create(:project, owner: user) }
 
   it "is valid with a user, project, and message" do
@@ -17,6 +17,15 @@ RSpec.describe Note, type: :model do
     note = Note.new(message: nil)
     note.valid?
     expect(note.errors[:message]).to include("can't be blank")
+  end
+
+  it "delegates name to the user who created it" do
+    # note = FactoryBot.build(:note, user: user)
+    # expect(note.user.name).to eq("Jesse Rogers")
+    user = instance_double("User", name: "Fake User")
+    note = Note.new
+    allow(note).to receive(:user).and_return(user)
+    expect(note.user.name).to eq("Fake User")
   end
 
   describe "search message for a term" do
